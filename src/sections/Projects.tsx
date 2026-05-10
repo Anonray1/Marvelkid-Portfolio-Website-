@@ -66,40 +66,46 @@ export default function Projects() {
                 viewport={{ once: true }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className={`${spanClass} bento-card group p-0! h-full`}
+                className={`${spanClass} bento-card group p-0! h-full cursor-pointer md:cursor-default`}
+                onClick={() => {
+                  if (window.innerWidth < 768) setSelectedProject(project);
+                }}
               >
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-40 group-hover:opacity-60"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out md:group-hover:scale-110 grayscale md:grayscale group-hover:grayscale-0 opacity-40 md:opacity-40 group-hover:opacity-60"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg-deep via-bg-deep/40 to-transparent z-10 opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-bg-deep via-bg-deep/40 to-transparent z-10 opacity-60 md:opacity-40 group-hover:opacity-80 transition-opacity duration-500" />
                 
-                <div className="absolute inset-0 z-20 p-8 md:p-12 flex flex-col justify-end">
-                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                    <p className="text-[10px] font-bold text-brand-primary mb-3 uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+                <div className="absolute inset-0 z-20 p-6 md:p-12 flex flex-col justify-end">
+                  <div className="md:transform md:translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <p className="text-[10px] font-bold text-brand-primary mb-2 md:mb-3 uppercase tracking-[0.3em] opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
                       {project.category}
                     </p>
-                    <h3 className="text-2xl md:text-4xl font-display font-bold mb-6 text-text-primary group-hover:text-white transition-colors duration-300">
+                    <h3 className="text-xl md:text-4xl font-display font-bold mb-4 md:mb-6 text-white md:text-text-primary group-hover:text-white transition-colors duration-300">
                       {project.title}
                     </h3>
                     
-                    <div className="flex flex-wrap items-center justify-between gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+                    <div className="flex flex-wrap items-center justify-between gap-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
                       <div className="flex flex-wrap gap-2">
-                        {project.tags.slice(0, 3).map(tag => (
-                          <span key={tag} className="text-[9px] px-3 py-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-full font-bold text-text-secondary">
+                        {project.tags.slice(0, 2).map(tag => (
+                          <span key={tag} className="text-[8px] md:text-[9px] px-2 md:px-3 py-1 bg-white/10 md:backdrop-blur-md border border-white/10 rounded-full font-bold text-white/80 md:text-text-secondary">
                             {tag}
                           </span>
                         ))}
                       </div>
                       
                       <button 
-                        onClick={() => setSelectedProject(project)}
-                        className="w-14 h-14 rounded-full bg-brand-primary flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-all shadow-xl shadow-brand-primary/20"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedProject(project);
+                        }}
+                        className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-brand-primary flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-all shadow-xl shadow-brand-primary/20"
                         title="View Project Preview"
                       >
-                        <ExternalLink size={20} />
+                        <ExternalLink size={18} className="md:w-5 md:h-5" />
                       </button>
                     </div>
                   </div>
@@ -183,10 +189,12 @@ export default function Projects() {
               </div>
 
               {/* Iframe Content */}
-              <div className="flex-1 bg-slate-100 dark:bg-slate-900 relative overflow-hidden flex justify-center items-start pt-4 sm:pt-8">
+              <div className="flex-1 bg-slate-100 dark:bg-slate-900 relative overflow-hidden flex justify-center items-start pt-0 sm:pt-8">
                 <div 
                   className={`bg-white shadow-2xl transition-all duration-500 overflow-hidden relative ${
-                    viewMode === 'desktop' ? 'w-full h-full' : 'w-[375px] h-[750px] rounded-[40px] border-[12px] border-slate-800 self-center mb-8'
+                    viewMode === 'desktop' 
+                      ? 'w-full h-full' 
+                      : 'w-full max-w-[375px] h-full max-h-[750px] sm:rounded-[40px] border-0 sm:border-[12px] border-slate-800 self-center mb-0 sm:mb-8'
                   }`}
                 >
                   <iframe 
@@ -197,7 +205,7 @@ export default function Projects() {
                   />
                   
                   {viewMode === 'mobile' && (
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-6 bg-slate-800 rounded-b-2xl z-10" />
+                    <div className="hidden sm:block absolute top-0 left-1/2 -translate-x-1/2 w-40 h-6 bg-slate-800 rounded-b-2xl z-10" />
                   )}
                 </div>
               </div>

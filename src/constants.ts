@@ -4,7 +4,7 @@
  */
 
 export const PERSONAL_INFO = {
-  name: "Marvelkid",
+    name: "Marvelkid",
   title: "Full Stack Developer",
   bio: "I am a highly skilled full stack developer with strong knowledge across multiple programming languages, frameworks, and CMS platforms. I build scalable, high-performance web applications, business websites, and e-commerce systems with clean and efficient code. I am passionate about creating modern digital experiences and solving real-world problems through technology.",
   email: "ojomarvelous605@gmail.com, marvelkid.booking@gmail.com",
@@ -13,8 +13,8 @@ export const PERSONAL_INFO = {
   instagram: "https://www.instagram.com/marvelkid001",
   twitter: "https://x.com/marvelkid001",
   whatsapp: "https://wa.me/2348067160717", // Replace with your real WhatsApp number
-  cvUrl: "/resume.pdf", // Place your resume.pdf in the public folder and update this to its name
-  avatar: "/me2.png", // Professional avatar
+  cvUrl: "https://drive.google.com/file/d/1a4TVFjRUhWQp50Ru_9nxeTMQUcRXNP1k/view?usp=sharing", // Place your resume.pdf in the public folder and update this to its name
+  avatar: "/me2.png", // Professional avatarofessional avatar
 };
 
 export const SKILLS = [
@@ -76,7 +76,7 @@ export const PROJECTS = [
   },
   {
     id: 3,
-    title: "ClassickDi Entertainment",
+    title: "Classick Die Entertainment",
     description: "Dynamic record label website featuring artists, music, and event management.",
     category: "Record Label Music",
     tags: ["Music", "Entertainment", "Modern UI"],
